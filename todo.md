@@ -1,4 +1,3 @@
-- [ ] Otimizar título da página inicial para SEO (30-60 caracteres)
-- [ ] Enriquecer conteúdo da Home com palavras-chave estratégicas (AI, Multimodal, etc.)
-- [ ] Verificar metadados e estrutura de SEO
-- [ ] Salvar checkpoint com correções de SEO
+- [ ] Inicializar Git e realizar commit do projeto atual
+- [ ] Criar repositório remoto no GitHub via CLI e enviar código
+- [ ] Verificar integridade do repositório e entregar URL ao usuário
