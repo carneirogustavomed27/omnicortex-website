@@ -14,3 +14,11 @@
 - [x] Criar sitemap.xml e robots.txt para SEO
 - [x] Refinamento Final de Conteúdo e UX
 - [x] Entrega Final Funcional e Perfeita
+
+
+## Configuração do Stripe
+- [x] Verificar configuração atual do Stripe via MCP
+- [x] Criar produtos de assinatura (Starter, Pro, Business, Enterprise)
+- [x] Criar preços recorrentes para cada plano
+- [x] Criar pacotes de créditos avulsos
+- [x] Verificar e testar configuração completa
