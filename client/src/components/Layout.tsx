@@ -1,13 +1,24 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BrainCircuit, Github, Twitter, Linkedin } from "lucide-react";
+import { Menu, X, BrainCircuit, Github, Twitter, Linkedin, User } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,8 +32,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { href: "/", label: "Home" },
     { href: "/research", label: "Research" },
     { href: "/models", label: "Models" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
   ];
+
+  const handleLogin = () => {
+    window.location.href = getLoginUrl();
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-primary/30 selection:text-primary-foreground">
@@ -68,9 +84,61 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </span>
               </Link>
             ))}
-            <Button variant="outline" className="border-primary/50 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300">
-              Join Waitlist
-            </Button>
+            
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9 border border-primary/30">
+                      <AvatarFallback className="bg-primary/20 text-primary">
+                        {user?.name?.charAt(0).toUpperCase() || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="flex items-center justify-start gap-2 p-2">
+                    <div className="flex flex-col space-y-1 leading-none">
+                      <p className="font-medium">{user?.name}</p>
+                      <p className="text-xs text-muted-foreground">{user?.email}</p>
+                    </div>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <Link href="/dashboard">
+                    <DropdownMenuItem className="cursor-pointer">
+                      Dashboard
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/billing">
+                    <DropdownMenuItem className="cursor-pointer">
+                      Billing
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    className="cursor-pointer text-destructive focus:text-destructive"
+                    onClick={logout}
+                  >
+                    Sign out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center gap-3">
+                <Button 
+                  variant="ghost" 
+                  className="text-muted-foreground hover:text-foreground"
+                  onClick={handleLogin}
+                >
+                  Sign in
+                </Button>
+                <Link href="/pricing">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            )}
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -98,9 +166,49 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </span>
               </Link>
             ))}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-              Join Waitlist
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Link href="/dashboard">
+                  <span 
+                    className="block py-2 text-base font-medium text-primary cursor-pointer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Dashboard
+                  </span>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => {
+                    logout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => {
+                    handleLogin();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign in
+                </Button>
+                <Link href="/pricing">
+                  <Button 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         )}
       </header>
@@ -148,7 +256,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-semibold mb-4 text-foreground">Company</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/about" className="hover:text-primary transition-colors">About Us</a></li>
+                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>

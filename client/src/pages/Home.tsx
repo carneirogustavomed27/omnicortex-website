@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Cpu, Globe, ShieldCheck, Zap, Network, Layers } from "lucide-react";
@@ -5,6 +6,10 @@ import { Link } from "wouter";
 import { useEffect } from "react";
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   useEffect(() => {
     document.title = "OmniCortex AI Labs | Advanced Multimodal Artificial Intelligence Research";
   }, []);

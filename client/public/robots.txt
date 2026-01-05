@@ -1,0 +1,23 @@
+# OmniCortex AI Labs - robots.txt
+# https://omnicortex.ai
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://omnicortex.ai/sitemap.xml
+
+# Disallow dashboard and API routes from indexing
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /dashboard/*
+
+# Allow search engines to crawl public pages
+Allow: /
+Allow: /about
+Allow: /research
+Allow: /models
+Allow: /pricing
+
+# Crawl delay for politeness
+Crawl-delay: 1
