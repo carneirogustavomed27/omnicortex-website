@@ -1,23 +1,71 @@
 # OmniCortex AI Labs - robots.txt
 # https://omnicortex.ai
+# Last updated: 2025-01-05
 
+# Default rules for all crawlers
 User-agent: *
-Allow: /
-
-# Sitemap location
-Sitemap: https://omnicortex.ai/sitemap.xml
-
-# Disallow dashboard and API routes from indexing
-Disallow: /dashboard
-Disallow: /api/
-Disallow: /dashboard/*
-
-# Allow search engines to crawl public pages
 Allow: /
 Allow: /about
 Allow: /research
 Allow: /models
 Allow: /pricing
+Allow: /playground
 
-# Crawl delay for politeness
+# Disallow private/authenticated areas
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /billing
+Disallow: /api-keys
+Disallow: /success
+Disallow: /api/
+Disallow: /_core/
+Disallow: /admin
+
+# Disallow query parameters that create duplicate content
+Disallow: /*?*
+
+# Crawl delay for politeness (1 second between requests)
 Crawl-delay: 1
+
+# Specific rules for Googlebot (no crawl delay needed)
+User-agent: Googlebot
+Allow: /
+Allow: /about
+Allow: /research
+Allow: /models
+Allow: /pricing
+Allow: /playground
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /billing
+Disallow: /api-keys
+Disallow: /success
+Disallow: /api/
+Disallow: /_core/
+
+# Specific rules for Bingbot
+User-agent: Bingbot
+Allow: /
+Allow: /about
+Allow: /research
+Allow: /models
+Allow: /pricing
+Allow: /playground
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /billing
+Disallow: /api-keys
+Disallow: /success
+Disallow: /api/
+Crawl-delay: 1
+
+# Block AI training crawlers (optional - uncomment if desired)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ChatGPT-User
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+
+# Sitemap location
+Sitemap: https://omnicortex.ai/sitemap.xml

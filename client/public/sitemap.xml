@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://omnicortex.ai/</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://omnicortex.ai/images/og-image.jpg</image:loc>
+      <image:title>OmniCortex AI Labs - Universal Intelligence Awakened</image:title>
+      <image:caption>Advanced Multimodal Artificial Intelligence Research</image:caption>
+    </image:image>
   </url>
+  
+  <!-- About Page -->
   <url>
     <loc>https://omnicortex.ai/about</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Research Publications - High Priority for SEO -->
   <url>
     <loc>https://omnicortex.ai/research</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <!-- AI Models - High Priority for SEO -->
   <url>
     <loc>https://omnicortex.ai/models</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <!-- Pricing Page - Important for Conversion -->
   <url>
     <loc>https://omnicortex.ai/pricing</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- AI Playground - Interactive Demo -->
   <url>
-    <loc>https://omnicortex.ai/dashboard</loc>
+    <loc>https://omnicortex.ai/playground</loc>
     <lastmod>2025-01-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

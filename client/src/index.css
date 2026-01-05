@@ -280,37 +280,6 @@
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
-  
-  /* Typography Utilities */
-  .font-display {
-    font-family: var(--font-display);
-  }
-  
-  .font-body {
-    font-family: var(--font-body);
-  }
-  
-  /* Heading Styles with Space Grotesk */
-  .heading-hero {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  
-  .heading-section {
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-  
-  .heading-card {
-    font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 1.3;
-  }
 }
 
 @layer base {

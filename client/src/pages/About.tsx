@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { PageSEO } from "@/components/SEO";
 
 export default function About() {
   return (
+    <>
+      <PageSEO.About />
     <div className="container py-20 space-y-24">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
@@ -88,6 +91,7 @@ export default function About() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

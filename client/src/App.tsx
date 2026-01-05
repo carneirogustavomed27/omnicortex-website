@@ -17,6 +17,7 @@ import Billing from "./pages/Billing";
 import ApiKeys from "./pages/ApiKeys";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "./components/PageTransition";
+import { HelmetProvider } from "react-helmet-async";
 
 function AnimatedRoutes() {
   const [location] = useLocation();
@@ -92,12 +93,14 @@ function AnimatedRoutes() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <AnimatedRoutes />
-        </TooltipProvider>
-      </ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider defaultTheme="dark">
+          <TooltipProvider>
+            <Toaster />
+            <AnimatedRoutes />
+          </TooltipProvider>
+        </ThemeProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }

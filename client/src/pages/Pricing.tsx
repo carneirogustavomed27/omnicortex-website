@@ -4,20 +4,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Check, Zap, Shield, Rocket, Crown, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import { getLoginUrl } from "@/const";
+import { PageSEO } from "@/components/SEO";
 
 export default function Pricing() {
   const { user, isAuthenticated } = useAuth();
   const [isYearly, setIsYearly] = useState(true);
   const { data: plans, isLoading } = trpc.pricing.getPlans.useQuery();
   const createCheckout = trpc.subscription.createCheckout.useMutation();
-
-  useEffect(() => {
-    document.title = "Pricing - OmniCortex AI Labs | AI API Plans for Developers & Enterprises";
-  }, []);
 
   const handleSubscribe = async (planId: string) => {
     if (!isAuthenticated) {
@@ -75,7 +72,9 @@ export default function Pricing() {
   }
 
   return (
-    <div className="min-h-screen py-20">
+    <>
+      <PageSEO.Pricing />
+      <div className="min-h-screen py-20">
       {/* Header */}
       <div className="container text-center mb-16">
         <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
@@ -251,6 +250,7 @@ export default function Pricing() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

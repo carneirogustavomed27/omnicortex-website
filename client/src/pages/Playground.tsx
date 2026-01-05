@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
+import { PageSEO } from "@/components/SEO";
 
 interface Message {
   role: "user" | "assistant";
@@ -144,10 +145,6 @@ export default function Playground() {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(() => {
-    document.title = "AI Playground | OmniCortex AI Labs";
-  }, []);
-
   const simulateResponse = async (userMessage: string): Promise<string> => {
     // Simulate AI response based on the selected model
     const responses: Record<string, string[]> = {
@@ -245,7 +242,9 @@ export default function Playground() {
   };
 
   return (
-    <Layout>
+    <>
+      <PageSEO.Playground />
+      <Layout>
       <div className="min-h-screen bg-gradient-to-b from-[#0a0a1a] via-[#0d1025] to-[#0a0a1a]">
         {/* Hero Section */}
         <section className="relative pt-24 pb-8 overflow-hidden">
@@ -616,5 +615,6 @@ export default function Playground() {
         </section>
       </div>
     </Layout>
+    </>
   );
 }

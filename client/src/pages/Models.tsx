@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, Star, GitFork, Terminal, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { PageSEO } from "@/components/SEO";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,12 +28,10 @@ const itemVariants = {
 };
 
 export default function Models() {
-  useEffect(() => {
-    document.title = "Models & Datasets | OmniCortex AI Labs";
-  }, []);
-
   return (
-    <div className="container py-20 space-y-20">
+    <>
+      <PageSEO.Models />
+      <div className="container py-20 space-y-20">
       <motion.div 
         className="text-center max-w-3xl mx-auto space-y-6"
         initial={{ opacity: 0, y: -20 }}
@@ -128,6 +126,7 @@ export default function Models() {
         </div>
       </motion.div>
     </div>
+    </>
   );
 }
 

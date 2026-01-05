@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, ArrowUpRight, BookOpen, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { PageSEO } from "@/components/SEO";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,12 +28,10 @@ const itemVariants = {
 };
 
 export default function Research() {
-  useEffect(() => {
-    document.title = "Research | OmniCortex AI Labs";
-  }, []);
-
   return (
-    <div className="container py-20 space-y-20">
+    <>
+      <PageSEO.Research />
+      <div className="container py-20 space-y-20">
       <motion.div 
         className="max-w-4xl space-y-6"
         initial={{ opacity: 0, y: -20 }}
@@ -135,6 +133,7 @@ export default function Research() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
 

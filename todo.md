@@ -36,3 +36,11 @@
 - [x] Implementar transições de página com Framer Motion (fade-in/slide-up)
 - [x] Adicionar efeitos de glow dinâmico nos cards ao hover
 - [x] Testar e verificar todas as animações
+
+
+## Engenharia de SEO e Performance
+- [x] Instalar e configurar react-helmet-async
+- [x] Implementar meta tags dinâmicas em todas as páginas
+- [x] Adicionar tags Open Graph completas (og:image, og:title, twitter:card)
+- [x] Otimizar sitemap.xml e robots.txt
+- [x] Gerar imagem OG profissional para compartilhamento social
