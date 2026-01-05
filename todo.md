@@ -22,3 +22,10 @@
 - [x] Criar preços recorrentes para cada plano
 - [x] Criar pacotes de créditos avulsos
 - [x] Verificar e testar configuração completa
+
+
+## Próximos Passos - Implementação
+- [x] Criar Playground de IA interativo para testar modelos
+- [x] Implementar sistema de Email Marketing via webhooks do Stripe
+- [x] Criar Página de Sucesso com onboarding guiado pós-checkout
+- [x] Testar e verificar todas as funcionalidades
