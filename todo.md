@@ -1,0 +1,4 @@
+- [ ] Otimizar título da página inicial para SEO (30-60 caracteres)
+- [ ] Enriquecer conteúdo da Home com palavras-chave estratégicas (AI, Multimodal, etc.)
+- [ ] Verificar metadados e estrutura de SEO
+- [ ] Salvar checkpoint com correções de SEO

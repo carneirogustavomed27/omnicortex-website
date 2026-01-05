@@ -2,8 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Cpu, Globe, ShieldCheck, Zap, Network, Layers } from "lucide-react";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "OmniCortex AI Labs | Advanced Multimodal Artificial Intelligence Research";
+  }, []);
+
   return (
     <div className="flex flex-col gap-20 md:gap-32 pb-20">
       {/* Hero Section */}
@@ -18,7 +23,7 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            Introducing OmniCortex 1.0
+            Introducing OmniCortex 1.0 - Next Gen AI
           </div>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 max-w-4xl">
@@ -27,16 +32,20 @@ export default function Home() {
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Pioneering the next generation of cognitive computing with multimodal AI systems that think, learn, and adapt like never before.
+            Pioneering the future of <strong>Artificial Intelligence</strong> with advanced <strong>Multimodal AI</strong> systems, <strong>Deep Learning</strong>, and <strong>Neural Networks</strong> that think, learn, and adapt.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mt-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Button size="lg" className="text-lg px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-10px_var(--primary)] transition-all hover:scale-105">
-              Explore Models <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 h-14 rounded-full border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all hover:scale-105">
-              Read Research
-            </Button>
+            <Link href="/models">
+              <Button size="lg" className="text-lg px-8 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-10px_var(--primary)] transition-all hover:scale-105 w-full sm:w-auto">
+                Explore Models <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+            <Link href="/research">
+              <Button variant="outline" size="lg" className="text-lg px-8 h-14 rounded-full border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all hover:scale-105 w-full sm:w-auto">
+                Read Research
+              </Button>
+            </Link>
           </div>
 
           {/* Abstract UI Element */}
@@ -44,7 +53,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-secondary/5 opacity-50" />
             <img 
               src="/images/hero-bg.jpg" 
-              alt="OmniCortex Interface" 
+              alt="OmniCortex Neural Interface Visualization" 
               className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 scale-105 group-hover:scale-100"
             />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -80,7 +89,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 mb-12 md:text-center md:items-center">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Core Research Areas</h2>
           <p className="text-muted-foreground max-w-2xl text-lg">
-            We are pushing the boundaries of what's possible in artificial intelligence across multiple disciplines.
+            We are pushing the boundaries of what's possible in <strong>Generative AI</strong> and <strong>Machine Learning</strong> across multiple disciplines.
           </p>
         </div>
 
@@ -88,22 +97,22 @@ export default function Home() {
           <FeatureCard 
             icon={<Globe className="w-8 h-8 text-primary" />}
             title="Large Language Models"
-            description="Developing state-of-the-art LLMs with enhanced reasoning capabilities and trillion-parameter scale context understanding."
+            description="Developing state-of-the-art LLMs and Foundation Models with enhanced reasoning capabilities and trillion-parameter scale context understanding."
           />
           <FeatureCard 
             icon={<Layers className="w-8 h-8 text-secondary" />}
             title="Multimodal Systems"
-            description="Unified architectures that seamlessly process and generate text, image, audio, and video in real-time."
+            description="Unified architectures that seamlessly process and generate text, image, audio, and video in real-time using advanced Neural Networks."
           />
           <FeatureCard 
             icon={<ShieldCheck className="w-8 h-8 text-green-400" />}
             title="AI Safety & Alignment"
-            description=" rigorous research into interpretability, robustness, and ethical alignment of autonomous systems."
+            description="Rigorous research into interpretability, robustness, and ethical alignment of autonomous systems to ensure safe Artificial Intelligence."
           />
           <FeatureCard 
             icon={<Network className="w-8 h-8 text-purple-400" />}
             title="Reinforcement Learning"
-            description="Creating agents that learn complex behaviors and decision-making strategies in dynamic environments."
+            description="Creating agents that learn complex behaviors and decision-making strategies in dynamic environments through Deep Reinforcement Learning."
           />
           <FeatureCard 
             icon={<Zap className="w-8 h-8 text-yellow-400" />}
@@ -113,7 +122,7 @@ export default function Home() {
           <FeatureCard 
             icon={<Cpu className="w-8 h-8 text-blue-400" />}
             title="AutoML & Infrastructure"
-            description="Automating the machine learning pipeline to accelerate research and deployment cycles."
+            description="Automating the machine learning pipeline to accelerate research and deployment cycles for scalable AI solutions."
           />
         </div>
       </section>
@@ -125,7 +134,7 @@ export default function Home() {
             <div className="p-8 md:p-16 flex flex-col justify-center gap-6">
               <h2 className="text-3xl md:text-4xl font-bold">Democratizing Universal Intelligence</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                At OmniCortex AI Labs, we believe that advanced artificial intelligence should be accessible, transparent, and beneficial to all of humanity. Our open-source commitment ensures that our breakthroughs empower developers and researchers worldwide.
+                At OmniCortex AI Labs, we believe that advanced <strong>Artificial Intelligence</strong> should be accessible, transparent, and beneficial to all of humanity. Our <strong>Open Source AI</strong> commitment ensures that our breakthroughs empower developers and researchers worldwide.
               </p>
               <ul className="space-y-4 mt-4">
                 <li className="flex items-center gap-3">
@@ -148,15 +157,17 @@ export default function Home() {
                 </li>
               </ul>
               <div className="pt-4">
-                <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
-                  Read Our Manifesto
-                </Button>
+                <Link href="/about">
+                  <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
+                    Read Our Manifesto
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative min-h-[400px] lg:min-h-full bg-black/50">
               <img 
                 src="/images/about-ai-research.jpg" 
-                alt="AI Research" 
+                alt="AI Research Laboratory" 
                 className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent lg:bg-gradient-to-l" />
@@ -170,15 +181,19 @@ export default function Home() {
         <div className="max-w-3xl mx-auto space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Ready to build with OmniCortex?</h2>
           <p className="text-xl text-muted-foreground">
-            Join thousands of developers and researchers pushing the boundaries of what's possible.
+            Join thousands of developers and researchers pushing the boundaries of what's possible with <strong>Generative AI</strong>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="rounded-full px-8 bg-white text-black hover:bg-white/90 font-semibold">
-              Get Started
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8 border-white/20 hover:bg-white/10">
-              View Documentation
-            </Button>
+            <Link href="/models">
+              <Button size="lg" className="rounded-full px-8 bg-white text-black hover:bg-white/90 font-semibold">
+                Get Started
+              </Button>
+            </Link>
+            <a href="https://huggingface.co/OmniCortex" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="rounded-full px-8 border-white/20 hover:bg-white/10">
+                View Documentation
+              </Button>
+            </a>
           </div>
         </div>
       </section>
