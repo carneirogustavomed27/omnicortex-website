@@ -29,3 +29,10 @@
 - [x] Implementar sistema de Email Marketing via webhooks do Stripe
 - [x] Criar Página de Sucesso com onboarding guiado pós-checkout
 - [x] Testar e verificar todas as funcionalidades
+
+
+## UX e Design de Elite
+- [x] Configurar fonte Space Grotesk e atualizar tipografia global
+- [x] Implementar transições de página com Framer Motion (fade-in/slide-up)
+- [x] Adicionar efeitos de glow dinâmico nos cards ao hover
+- [x] Testar e verificar todas as animações

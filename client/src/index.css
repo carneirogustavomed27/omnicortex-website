@@ -40,6 +40,10 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Custom Font Family */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
 :root {
@@ -61,6 +65,10 @@
   --chart-5: oklch(0.4 0.1 300); /* Deep Purple */
   
   --radius: 0.5rem;
+  
+  /* Glow Colors */
+  --glow-cyan: 0 212 255;
+  --glow-purple: 123 44 191;
   
   /* Light Mode (Not primary, but kept for compatibility) */
   --background: oklch(0.98 0.01 260);
@@ -128,7 +136,7 @@
   --sidebar-ring: oklch(0.75 0.18 230);
 }
 
-/* Custom Utilities for Glassmorphism */
+/* Custom Utilities for Glassmorphism and Glow Effects */
 @layer utilities {
   .glass-panel {
     @apply bg-card/60 backdrop-blur-md border border-white/10 shadow-xl;
@@ -138,8 +146,170 @@
     text-shadow: 0 0 20px var(--primary);
   }
   
+  .text-glow-strong {
+    text-shadow: 0 0 10px rgb(var(--glow-cyan) / 0.8), 
+                 0 0 30px rgb(var(--glow-cyan) / 0.6), 
+                 0 0 50px rgb(var(--glow-cyan) / 0.4);
+  }
+  
   .border-glow {
     box-shadow: 0 0 15px -5px var(--primary);
+  }
+  
+  /* Dynamic Glow Card Effect */
+  .glow-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glow-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, 
+      rgb(var(--glow-cyan) / 0) 0%, 
+      rgb(var(--glow-cyan) / 0) 100%);
+    z-index: -1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+  }
+  
+  .glow-card:hover::before {
+    background: linear-gradient(135deg, 
+      rgb(var(--glow-cyan) / 0.5) 0%, 
+      rgb(var(--glow-purple) / 0.5) 100%);
+    opacity: 1;
+    filter: blur(15px);
+  }
+  
+  .glow-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 0 20px rgb(var(--glow-cyan) / 0.3),
+      0 0 40px rgb(var(--glow-cyan) / 0.2),
+      0 20px 40px rgb(0 0 0 / 0.3);
+  }
+  
+  /* Animated Gradient Border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+                linear-gradient(135deg, rgb(var(--glow-cyan)), rgb(var(--glow-purple))) border-box;
+    border: 2px solid transparent;
+  }
+  
+  .gradient-border-animated {
+    position: relative;
+    background: var(--background);
+  }
+  
+  .gradient-border-animated::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgb(var(--glow-cyan)), rgb(var(--glow-purple)), rgb(var(--glow-cyan)));
+    background-size: 200% 200%;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradient-rotate 3s linear infinite;
+  }
+  
+  @keyframes gradient-rotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Pulse Glow Animation */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgb(var(--glow-cyan) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgb(var(--glow-cyan) / 0.6), 0 0 60px rgb(var(--glow-purple) / 0.3);
+    }
+  }
+  
+  /* Shimmer Effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--glow-cyan) / 0.1),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      left: 100%;
+    }
+  }
+  
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Typography Utilities */
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  /* Heading Styles with Space Grotesk */
+  .heading-hero {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  
+  .heading-section {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  .heading-card {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.3;
   }
 }
 
@@ -148,11 +318,26 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
+  }
+  h1 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  h2 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.3;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -170,22 +355,12 @@
 @layer components {
   /**
    * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
    */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -196,16 +371,16 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }

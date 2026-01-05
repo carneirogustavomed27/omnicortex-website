@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
@@ -15,28 +15,77 @@ import CheckoutSuccess from "./pages/CheckoutSuccess";
 import Dashboard from "./pages/Dashboard";
 import Billing from "./pages/Billing";
 import ApiKeys from "./pages/ApiKeys";
+import { AnimatePresence } from "framer-motion";
+import { PageTransition } from "./components/PageTransition";
 
-function Router() {
-  // make sure to consider if you need authentication for certain routes
+function AnimatedRoutes() {
+  const [location] = useLocation();
+  
   return (
-    <Switch>
-      {/* Public routes */}
-      <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/research" component={Research} />
-      <Route path="/models" component={Models} />
-      <Route path="/pricing" component={Pricing} />
-      <Route path="/playground" component={Playground} />
-      <Route path="/checkout/success" component={CheckoutSuccess} />
-      
-      {/* Protected routes (Dashboard has its own layout) */}
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/dashboard/billing" component={Billing} />
-      <Route path="/dashboard/api-keys" component={ApiKeys} />
-      
-      {/* Fallback */}
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence mode="wait">
+      <Switch location={location} key={location}>
+        {/* Public routes with page transitions */}
+        <Route path="/">
+          <PageTransition>
+            <Home />
+          </PageTransition>
+        </Route>
+        <Route path="/about">
+          <PageTransition>
+            <About />
+          </PageTransition>
+        </Route>
+        <Route path="/research">
+          <PageTransition>
+            <Research />
+          </PageTransition>
+        </Route>
+        <Route path="/models">
+          <PageTransition>
+            <Models />
+          </PageTransition>
+        </Route>
+        <Route path="/pricing">
+          <PageTransition>
+            <Pricing />
+          </PageTransition>
+        </Route>
+        <Route path="/playground">
+          <PageTransition>
+            <Playground />
+          </PageTransition>
+        </Route>
+        <Route path="/checkout/success">
+          <PageTransition>
+            <CheckoutSuccess />
+          </PageTransition>
+        </Route>
+        
+        {/* Protected routes (Dashboard has its own layout) */}
+        <Route path="/dashboard">
+          <PageTransition>
+            <Dashboard />
+          </PageTransition>
+        </Route>
+        <Route path="/dashboard/billing">
+          <PageTransition>
+            <Billing />
+          </PageTransition>
+        </Route>
+        <Route path="/dashboard/api-keys">
+          <PageTransition>
+            <ApiKeys />
+          </PageTransition>
+        </Route>
+        
+        {/* Fallback */}
+        <Route>
+          <PageTransition>
+            <NotFound />
+          </PageTransition>
+        </Route>
+      </Switch>
+    </AnimatePresence>
   );
 }
 
@@ -46,7 +95,7 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <AnimatedRoutes />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

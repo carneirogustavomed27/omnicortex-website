@@ -1,19 +1,63 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Download, Star, GitFork, Terminal } from "lucide-react";
+import { Download, Star, GitFork, Terminal, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.4, 0, 0.2, 1] as const
+    }
+  }
+};
 
 export default function Models() {
+  useEffect(() => {
+    document.title = "Models & Datasets | OmniCortex AI Labs";
+  }, []);
+
   return (
     <div className="container py-20 space-y-20">
-      <div className="text-center max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Models & Datasets</h1>
+      <motion.div 
+        className="text-center max-w-3xl mx-auto space-y-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+          <Sparkles className="w-4 h-4" />
+          Open Source AI
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+          Models & <span className="text-glow text-primary">Datasets</span>
+        </h1>
         <p className="text-xl text-muted-foreground leading-relaxed">
           Open-source foundation models and high-quality datasets for the community.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <ModelCard 
           name="OmniCortex-7B"
           type="Language Model"
@@ -21,6 +65,7 @@ export default function Models() {
           downloads="1.2M"
           stars="15k"
           tags={["NLP", "Coding", "Reasoning"]}
+          featured
         />
         <ModelCard 
           name="OmniVision-Pro"
@@ -62,66 +107,74 @@ export default function Models() {
           stars="3k"
           tags={["Safety", "Eval"]}
         />
-      </div>
+      </motion.div>
 
       {/* Hugging Face CTA */}
-      <div className="rounded-3xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center space-y-8 relative overflow-hidden">
+      <motion.div 
+        className="rounded-3xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center space-y-8 relative overflow-hidden glow-card"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
         <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20 mix-blend-overlay" />
         <div className="relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold">Explore our full library on Hugging Face</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-4">
             Access all our models, datasets, and demos directly on the Hugging Face Hub. Join the community discussion and contribute.
           </p>
-          <Button size="lg" className="mt-8 rounded-full px-8 bg-[#FFD21E] text-black hover:bg-[#FFD21E]/90 font-bold">
+          <Button size="lg" className="mt-8 rounded-full px-8 bg-[#FFD21E] text-black hover:bg-[#FFD21E]/90 font-bold shadow-[0_0_30px_-10px_#FFD21E] hover:shadow-[0_0_40px_-5px_#FFD21E] transition-all">
             Visit Hugging Face Organization
           </Button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
-function ModelCard({ name, type, description, downloads, stars, tags }: { name: string, type: string, description: string, downloads: string, stars: string, tags: string[] }) {
+function ModelCard({ name, type, description, downloads, stars, tags, featured }: { name: string, type: string, description: string, downloads: string, stars: string, tags: string[], featured?: boolean }) {
   return (
-    <Card className="glass-panel border-white/5 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 flex flex-col">
-      <CardHeader>
-        <div className="flex justify-between items-start mb-2">
-          <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
-            {type}
-          </Badge>
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Download className="w-4 h-4" /> {downloads}
-            </div>
-            <div className="flex items-center gap-1">
-              <Star className="w-4 h-4" /> {stars}
+    <motion.div variants={itemVariants}>
+      <Card className={`glow-card glass-panel border-white/5 hover:border-primary/30 transition-all duration-300 flex flex-col h-full ${featured ? 'ring-1 ring-primary/30' : ''}`}>
+        <CardHeader>
+          <div className="flex justify-between items-start mb-2">
+            <Badge variant="secondary" className={`${featured ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'} hover:bg-primary/20`}>
+              {featured && <Sparkles className="w-3 h-3 mr-1" />}
+              {type}
+            </Badge>
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1">
+                <Download className="w-4 h-4" /> {downloads}
+              </div>
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4 text-yellow-500" /> {stars}
+              </div>
             </div>
           </div>
-        </div>
-        <CardTitle className="text-2xl">{name}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-muted-foreground leading-relaxed">
-          {description}
-        </p>
-      </CardContent>
-      <CardFooter className="flex flex-col gap-4 items-start">
-        <div className="flex flex-wrap gap-2">
-          {tags.map(tag => (
-            <Badge key={tag} variant="outline" className="border-white/10 text-muted-foreground text-xs">
-              {tag}
-            </Badge>
-          ))}
-        </div>
-        <div className="w-full flex gap-2 pt-2">
-          <Button className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10">
-            <Terminal className="w-4 h-4 mr-2" /> Try Demo
-          </Button>
-          <Button className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20">
-            <GitFork className="w-4 h-4 mr-2" /> Fine-tune
-          </Button>
-        </div>
-      </CardFooter>
-    </Card>
+          <CardTitle className="text-2xl group-hover:text-primary transition-colors">{name}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <p className="text-muted-foreground leading-relaxed">
+            {description}
+          </p>
+        </CardContent>
+        <CardFooter className="flex flex-col gap-4 items-start">
+          <div className="flex flex-wrap gap-2">
+            {tags.map(tag => (
+              <Badge key={tag} variant="outline" className="border-white/10 text-muted-foreground text-xs hover:border-primary/30 hover:text-primary transition-colors">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+          <div className="w-full flex gap-2 pt-2">
+            <Button className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 transition-all">
+              <Terminal className="w-4 h-4 mr-2" /> Try Demo
+            </Button>
+            <Button className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/40 transition-all">
+              <GitFork className="w-4 h-4 mr-2" /> Fine-tune
+            </Button>
+          </div>
+        </CardFooter>
+      </Card>
+    </motion.div>
   );
 }
