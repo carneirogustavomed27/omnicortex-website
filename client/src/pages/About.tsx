@@ -99,7 +99,7 @@ function ValueCard({ number, title, description }: { number: string, title: stri
   return (
     <Card className="bg-card/30 border-white/5 backdrop-blur-sm hover:bg-card/50 transition-colors">
       <CardContent className="p-8 space-y-4">
-        <div className="text-4xl font-mono font-bold text-primary/20">{number}</div>
+        <div className="text-4xl font-mono font-bold text-primary/40" aria-hidden="true">{number}</div>
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-muted-foreground leading-relaxed">
           {description}

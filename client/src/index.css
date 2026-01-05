@@ -116,7 +116,7 @@
   --secondary-foreground: oklch(0.98 0 0);
   
   --muted: oklch(0.25 0.04 260);
-  --muted-foreground: oklch(0.7 0.04 260);
+  --muted-foreground: oklch(0.75 0.04 260); /* Improved contrast for WCAG AA */
   
   --accent: oklch(0.25 0.04 260);
   --accent-foreground: oklch(0.95 0.01 260);

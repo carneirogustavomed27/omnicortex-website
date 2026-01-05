@@ -44,3 +44,11 @@
 - [x] Adicionar tags Open Graph completas (og:image, og:title, twitter:card)
 - [x] Otimizar sitemap.xml e robots.txt
 - [x] Gerar imagem OG profissional para compartilhamento social
+
+
+## Auditoria de Acessibilidade e Gold Master
+- [x] Instalar e configurar Axe Core para auditoria
+- [x] Executar auditoria de acessibilidade em todas as páginas
+- [x] Corrigir problemas de contraste identificados
+- [x] Corrigir problemas de navegação por teclado (skip-to-content, ARIA labels, focus states)
+- [ ] Commit final e push para GitHub (versão Gold Master)
